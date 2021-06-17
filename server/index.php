@@ -31,62 +31,42 @@ $dispatcher = FastRoute\simpleDispatcher(
         );
         $r->addRoute(
             'GET', '/list', function ($vars) {
-                global $JSless,$db;
                 $_SESSION["token_list"] = bin2hex(random_bytes(64));
-                if($JSless){
-                    $query_results = $db->select("SELECT * FROM `".DB_PREFIX."_profiles` ORDER BY available DESC, chief DESC, services ASC, availability_minutes ASC, name ASC");
-                } else {
-                    $query_results = null;
-                }
                 return [
                     'list.html',
                     'Availability List',
-                    ['token_list' => $_SESSION["token_list"], 'query_results' => $query_results]
+                    ['token_list' => $_SESSION["token_list"]],
+                    "SELECT * FROM `".DB_PREFIX."_profiles` ORDER BY available DESC, chief DESC, services ASC, availability_minutes ASC, name ASC"
                 ];
             }
         );
         $r->addRoute(
             'GET', '/services', function ($vars) {
-                global $JSless,$db;
-                if($JSless){
-                    $query_results = $db->select("SELECT * FROM `".DB_PREFIX."_services` ORDER BY date DESC, beginning DESC");
-                } else {
-                    $query_results = null;
-                }
                 return [
                     'services.html',
                     'Services',
-                    ['query_results' => $query_results]
+                    [],
+                    "SELECT * FROM `".DB_PREFIX."_services` ORDER BY date DESC, beginning DESC"
                 ];
             }
         );
         $r->addRoute(
             'GET', '/trainings', function ($vars) {
-                global $JSless,$db;
-                if($JSless){
-                    $query_results = $db->select("SELECT * FROM `".DB_PREFIX."_trainings` ORDER BY date DESC, beginning desc");
-                } else {
-                    $query_results = null;
-                }
                 return [
                     'trainings.html',
                     'Trainings',
-                    ['query_results' => $query_results]
+                    [],
+                    "SELECT * FROM `".DB_PREFIX."_trainings` ORDER BY date DESC, beginning desc"
                 ];
             }
         );
         $r->addRoute(
             'GET', '/log', function ($vars) {
-                global $JSless,$db;
-                if($JSless){
-                    $query_results = $db->select("SELECT * FROM `".DB_PREFIX."_log` ORDER BY `timestamp` DESC");
-                } else {
-                    $query_results = null;
-                }
                 return [
                     'log.html',
                     'Logs',
-                    ['query_results' => $query_results]
+                    [],
+                    "SELECT * FROM `".DB_PREFIX."_log` ORDER BY `timestamp` DESC"
                 ];
             }
         );
@@ -127,9 +107,18 @@ function apiResponse($callback_results){
 }
 
 function uiResponse($callback_results){
+    global $JSless, $db;
+    if($JSless && !is_null($callback_results[3]) && !empty($callback_results[3])){
+        $query_results = $db->select($callback_results[3]);
+    } else {
+        $query_results = null;
+    }
     $twig_options = $callback_results[2];
-    $twig_options = array_merge($twig_options, ['title' => t($callback_results[1], false)]);
-    $requireLogin = isset($callback_results[3]) ? $callback_results[3] : false;
+    $twig_options = array_merge($twig_options, [
+        'title' => t($callback_results[1], false),
+        'query_results' => $query_results
+    ]);
+    $requireLogin = isset($callback_results[4]) ? $callback_results[4] : false;
     loadtemplate($callback_results[0], $twig_options, $requireLogin);
 }
 
