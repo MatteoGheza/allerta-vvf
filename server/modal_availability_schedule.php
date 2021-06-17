@@ -255,7 +255,7 @@ function submit_changes() {
     return c.value;
   });
   $.ajax({
-    url: "resources/ajax/ajax_availability_schedule.php",
+    url: "resources/ajax/ajax_availability_schedule",
     method: "POST",
     data: {
       hours: hours,

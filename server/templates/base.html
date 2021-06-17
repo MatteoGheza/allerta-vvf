@@ -57,10 +57,10 @@
   {% block menu %}
   {# Menu #}
   <div style="display: none" class="topnav" id="topNavBar">
-    <a href="{{ urlsoftware }}list.php" class="active">{{ 'Availability List'|t }}</a>
-    <a href="{{ urlsoftware }}services.php">{{ 'Services'|t }}</a>
-    <a href="{{ urlsoftware }}trainings.php">{{ 'Trainings'|t }}</a>
-    <a href="{{ urlsoftware }}log.php">{{ 'Logs'|t }}</a>
+    <a href="{{ urlsoftware }}list" class="active">{{ 'Availability List'|t }}</a>
+    <a href="{{ urlsoftware }}services">{{ 'Services'|t }}</a>
+    <a href="{{ urlsoftware }}trainings">{{ 'Trainings'|t }}</a>
+    <a href="{{ urlsoftware }}log">{{ 'Logs'|t }}</a>
     <a style="float: right;" id="logout">{{ 'Hi, %s.'|t|format(user.name) }} <b
         id="logout-text">{{ 'Logout'|t }}</b></a>
     <a class="pjax_disable icon" id="menuButton">☰</a>

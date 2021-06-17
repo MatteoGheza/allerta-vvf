@@ -27,7 +27,7 @@
 
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule .* error_page.php?error=404 [L]
+  RewriteRule (.*) index.php/$1 [L]
 </IfModule>
 
 <FilesMatch "(config|config.old|config-sample|core|ui)\.php">

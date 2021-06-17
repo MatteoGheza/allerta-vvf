@@ -9,7 +9,7 @@ if($tools->validate_form("mod", "add")) {
             bdump("adding service");
             $place = $tools->checkPlaceParam($_POST["place"]);
             $crud->add_service($_POST["date"], $_POST["code"], $_POST["beginning"], $_POST["end"], $_POST["chief"][0], $tools->extract_unique($_POST["drivers"]), $tools->extract_unique($_POST["crew"]), $place, $_POST["notes"], $_POST["type"], $tools->extract_unique([$_POST["chief"],$_POST["drivers"],$_POST["crew"]]), $user->name());
-            $tools->redirect("services.php");
+            $tools->redirect("services");
         } else {
             debug(); //TODO: remove debug info
         }
@@ -23,7 +23,7 @@ if($tools->validate_form("mod", "add")) {
             bdump("editing service");
             $place = $tools->checkPlaceParam($_POST["place"]);
             $crud->edit_service($_POST["id"], $_POST["date"], $_POST["code"], $_POST["beginning"], $_POST["end"], $_POST["chief"][0], $tools->extract_unique($_POST["drivers"]), $tools->extract_unique($_POST["crew"]), $place, $_POST["notes"], $_POST["type"], $tools->extract_unique([$_POST["chief"],$_POST["drivers"],$_POST["crew"]]), $user->name());
-            $tools->redirect("services.php");
+            $tools->redirect("services");
         } else {
             debug();
         }
@@ -36,7 +36,7 @@ if($tools->validate_form("mod", "add")) {
         if($_POST["token"] == $_SESSION['token']) {
             bdump("removing service");
             $crud->remove_service($_POST["id"]);
-            $tools->redirect("services.php");
+            $tools->redirect("services");
         } else {
             echo("1");
             debug();

@@ -41,11 +41,11 @@
 }
   </style>
   <div class="topnav" id="topNavBar">
-    <a href="{{ urlsoftware }}list.php" class="active">{{ 'Availability List'|t }}</a>
-    <a href="{{ urlsoftware }}services.php">{{ 'Services'|t }}</a>
-    <a href="{{ urlsoftware }}trainings.php">{{ 'Trainings'|t }}</a>
-    <a href="{{ urlsoftware }}log.php">{{ 'Logs'|t }}</a>
-    <a href='{{ urlsoftware }}logout.php' style="float: right;" id="logout">{{ 'Hi, %s.'|t|format(user.name) }} {{ 'Logout'|t }}</a>
+    <a href="{{ urlsoftware }}list" class="active">{{ 'Availability List'|t }}</a>
+    <a href="{{ urlsoftware }}services">{{ 'Services'|t }}</a>
+    <a href="{{ urlsoftware }}trainings">{{ 'Trainings'|t }}</a>
+    <a href="{{ urlsoftware }}log">{{ 'Logs'|t }}</a>
+    <a href='{{ urlsoftware }}logout' style="float: right;" id="logout">{{ 'Hi, %s.'|t|format(user.name) }} {{ 'Logout'|t }}</a>
   </div>
   {# /Menu #}
   {% endblock %}

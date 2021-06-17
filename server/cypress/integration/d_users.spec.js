@@ -53,14 +53,14 @@ describe("User management", () => {
                             cy.contains("Submit").click()
                             cy.wait('@ajax_list')
                             cy.contains(user.name)
-                            cy.visit("/log.php")
+                            cy.visit("/log")
                             cy.wait('@ajax_log')
                             cy.contains("User added")
                             cy.contains(user.name)
                             cy.visit("/")
                         } else {
                             console.log("Adding user via api...");
-                            cy.request({ method: 'POST', url: '/api.php/user', form: true,
+                            cy.request({ method: 'POST', url: '/api/user', form: true,
                             body: {
                                 apiKey: apiKey,
                                 mail: user.email,
@@ -78,7 +78,7 @@ describe("User management", () => {
                                     console.log(response.body)
                                     expect(response.status).to.eq(200)
                                     expect(response.body).to.have.property('userId')
-                                    cy.visit("/log.php")
+                                    cy.visit("/log")
                                     cy.wait('@ajax_log')
                                     cy.contains("User added")
                                     cy.contains(user.name)

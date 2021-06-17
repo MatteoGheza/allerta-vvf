@@ -24,7 +24,7 @@ foreach(!is_null($result) ? $result : [] as $row){
         !empty($row['phone_number']) ? "<a href='https://api.whatsapp.com/send?phone=".$row['phone_number']."&text=ALLERTA IN CORSO.%20Mettiti%20in%20contatto%20con%20$name_encoded'><i class='fa fa-whatsapp' style='color:green'></i></a>" : "",
         $row['services'],
         $row['availability_minutes'],
-        //"<a href='user_details.php?user=".$row['id']."'><p>".t("Altri dettagli", false)."</p></a>" TODO: fix "Other" page
+        //"<a href='user_details?user=".$row['id']."'><p>".t("Altri dettagli", false)."</p></a>" TODO: fix "Other" page
       ];
     } else {
       $name = $user->nameById($row["id"]);

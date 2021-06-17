@@ -6,7 +6,7 @@
   style="display: block; margin-left: auto; margin-right: auto;">
 <br>
 <p style="text-align: center;">
-  <a id='add' href="edit_training.php?add">{{ 'Add training'|t }}</a>
+  <a id='add' href="edit_training?add">{{ 'Add training'|t }}</a>
 </p>
 <br>
 <table style="width:100%">
@@ -49,10 +49,10 @@
     </th>
     <th>{{ row.notes }}</th>
     {% if option('training_edit') %}
-    <th><a href='edit_training.php?edit&id={{ row.id }}'>Modifica</a></th>
+    <th><a href='edit_training?edit&id={{ row.id }}'>Modifica</a></th>
     {% endif %}
     {% if option('training_remove') %}
-    <th><a href='edit_training.php?delete&id={{ row.id }}'>Rimuovi</a></th>
+    <th><a href='edit_training?delete&id={{ row.id }}'>Rimuovi</a></th>
     {% endif %}
   </tr>
 {% endfor %}

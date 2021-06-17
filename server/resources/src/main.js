@@ -192,7 +192,7 @@ $(function() {
       topNavBar.className = "topnav";
     }
   });
-  $("#logout-text").on("click", function(){ location.href='{{ urlsoftware }}logout.php'; });
+  $("#logout-text").on("click", function(){ location.href='logout'; });
 });
  
 export var lastTableLoadConfig = {
@@ -244,7 +244,7 @@ export async function loadTable ({ tablePage, setTableRefreshInterval = true, in
   }
   const replaceLatLngWithMap = tablePage === "services" || tablePage === "trainings";
   $.getJSON({
-    url: "resources/ajax/ajax_" + tablePage + ".php",
+    url: "resources/ajax/ajax_" + tablePage,
     data: { oldData: oldData },
     success: function (data, status, xhr) {
       oldData = xhr.getResponseHeader("data"); // TODO: refactoring and adding comments
@@ -317,7 +317,7 @@ export function reloadTable(){
 }
 
 export function activate(id, token_list) {
-  fetch("resources/ajax/ajax_change_availability.php", {
+  fetch("resources/ajax/ajax_change_availability", {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -335,7 +335,7 @@ export function activate(id, token_list) {
 }
  
 export function deactivate(id, token_list) {
-  fetch("resources/ajax/ajax_change_availability.php", {
+  fetch("resources/ajax/ajax_change_availability", {
     method: 'POST',
     headers: {
       'Accept': 'application/json',

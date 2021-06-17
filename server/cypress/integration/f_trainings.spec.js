@@ -4,7 +4,7 @@ describe("Training management", () => {
     })
 
     it('Add Training', function () {
-        cy.visit("/edit_training.php?add", {
+        cy.visit("/edit_training?add", {
             onBeforeLoad(win) {
                 cy.stub(win, 'prompt').returns('test')
             }
@@ -32,15 +32,15 @@ describe("Training management", () => {
         cy.wait('@ajax_trainings');
         cy.contains("2020-07-12");
         cy.contains("Test Training");
-        cy.visit("/log.php");
+        cy.visit("/log");
         cy.wait('@ajax_log');
         cy.contains("Training added");
-        cy.visit("/list.php");
+        cy.visit("/list");
         cy.wait('@ajax_list');
     });
 
     it('Edit Training', function() {
-        cy.visit("/trainings.php");
+        cy.visit("/trainings");
         cy.wait('@ajax_trainings');
         cy.get('.dtr-details a[data-action="edit"]').first().click();
         cy.get('#name').clear();
@@ -59,18 +59,18 @@ describe("Training management", () => {
         cy.wait('@ajax_trainings');
         cy.contains("2020-07-12");
         cy.contains("Training 1 test");
-        cy.visit("/log.php");
+        cy.visit("/log");
         cy.wait('@ajax_log');
         cy.contains("Training edited");
     });
 
     it('Delete Training', function() {
-        cy.visit("/trainings.php");
+        cy.visit("/trainings");
         cy.wait('@ajax_trainings');
         cy.get('.dtr-details a[data-action="delete"]').first().click();
         cy.get('#remove').click();
         cy.wait('@ajax_trainings');
-        cy.visit("/log.php");
+        cy.visit("/log");
         cy.wait('@ajax_log');
         cy.contains("Training removed");
     });

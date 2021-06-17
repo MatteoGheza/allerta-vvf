@@ -2,7 +2,7 @@ const cacheVersion = process.env.BUNDLE_DATE;
 const cacheName = "static-" + cacheVersion;
 const expectedCaches = [cacheName, "tables-1"];
 
-const urls = ["offline.php", "manifest.webmanifest", "resources/images/favicon.ico", "resources/dist/marker-icon.png", "resources/dist/layers.png", "resources/dist/layers-2x.png", "resources/images/android-chrome-192x192.png", "resources/images/android-chrome-384x384.png", "resources/images/black_helmet.png", "resources/images/red_helmet.png", "resources/images/wheel.png", "resources/images/logo.png", "resources/images/owner.png", "resources/dist/fonts/fontawesome-webfont.woff2"];
+const urls = ["offline", "manifest.webmanifest", "resources/images/favicon.ico", "resources/dist/marker-icon.png", "resources/dist/layers.png", "resources/dist/layers-2x.png", "resources/images/android-chrome-192x192.png", "resources/images/android-chrome-384x384.png", "resources/images/black_helmet.png", "resources/images/red_helmet.png", "resources/images/wheel.png", "resources/images/logo.png", "resources/images/owner.png", "resources/dist/fonts/fontawesome-webfont.woff2"];
 
 function fetchHandler (event, contentType, notFoundMessage) {
   // TODO: refactoring
@@ -33,7 +33,7 @@ function fetchHandler (event, contentType, notFoundMessage) {
 
         const cache = await caches.open(cacheName);
         if (event.request.headers.get("Accept").includes("text/html")) {
-          cacheFileName = "offline.php";
+          cacheFileName = "offline";
         } else {
           cacheFileName = event.request.url;
         }
@@ -57,7 +57,7 @@ self.addEventListener("fetch", function (event) {
   if (event.request.cache === "only-if-cached" && event.request.mode !== "same-origin") return;
 
   if (request.headers.get("Accept").includes("text/html")) {
-    fetchHandler(event, null, "offline.php");
+    fetchHandler(event, null, "offline");
   } else if (request.destination === "script") {
     fetchHandler(event, "application/javascript", "console.error('Script " + event.request.url + " not found');");
   } else if (request.destination === "image") {

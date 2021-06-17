@@ -23,7 +23,7 @@ Cypress.Commands.add("login", (username="admin", password="correcthorsebatteryst
 })
 
 Cypress.Commands.add("getApiKey", (username="admin", password="correcthorsebatterystaple") => {
-    cy.request({ method: 'POST', url: '/api.php/login', form: true, body: { username: username, password: password }})
+    cy.request({ method: 'POST', url: '/api/login', form: true, body: { username: username, password: password }})
         .then((response) => {
             expect(response.status).to.eq(200)
             expect(response.body).to.have.property('apiKey')
@@ -38,10 +38,10 @@ beforeEach(() => {
     cy.intercept('https://a.tile.openstreetmap.org/*/*/*.png', { fixture: 'map_frame_A.png' });
     cy.intercept('https://b.tile.openstreetmap.org/*/*/*.png', { fixture: 'map_frame_B.png' });
     cy.intercept('https://c.tile.openstreetmap.org/*/*/*.png', { fixture: 'map_frame_C.png' });
-    cy.intercept(Cypress.config('baseUrl')+'resources/ajax/ajax_add_type.php**').as('ajax_add_type');
-    cy.intercept(Cypress.config('baseUrl')+'resources/ajax/ajax_change_availability.php**').as('ajax_change_availability');
-    cy.intercept(Cypress.config('baseUrl')+'resources/ajax/ajax_list.php**').as('ajax_list');
-    cy.intercept(Cypress.config('baseUrl')+'resources/ajax/ajax_log.php**').as('ajax_log');
-    cy.intercept(Cypress.config('baseUrl')+'resources/ajax/ajax_services.php**').as('ajax_services');
-    cy.intercept(Cypress.config('baseUrl')+'resources/ajax/ajax_trainings.php**').as('ajax_trainings');
+    cy.intercept(Cypress.config('baseUrl')+'resources/ajax/ajax_add_type**').as('ajax_add_type');
+    cy.intercept(Cypress.config('baseUrl')+'resources/ajax/ajax_change_availability**').as('ajax_change_availability');
+    cy.intercept(Cypress.config('baseUrl')+'resources/ajax/ajax_list**').as('ajax_list');
+    cy.intercept(Cypress.config('baseUrl')+'resources/ajax/ajax_log**').as('ajax_log');
+    cy.intercept(Cypress.config('baseUrl')+'resources/ajax/ajax_services**').as('ajax_services');
+    cy.intercept(Cypress.config('baseUrl')+'resources/ajax/ajax_trainings**').as('ajax_trainings');
 });

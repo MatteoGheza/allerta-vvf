@@ -28,7 +28,7 @@ if($tools->validate_form("mod", "add")) {
                 exit();
             }
             $user->add_user($_POST["mail"], $_POST["name"], $_POST["username"], $_POST["password"], $phone_number, $_POST["birthday"], $chief, $driver, $hidden, $disabled, $user->name());
-            $tools->redirect("list.php");
+            $tools->redirect("list");
         } else {
             debug();
         }
@@ -41,9 +41,9 @@ if($tools->validate_form("mod", "add")) {
       bdump($_POST);
       bdump("editing service");
       $crud->edit_service($_POST["id"], $_POST["date"], $_POST["code"], $_POST["beginning"], $_POST["end"], $_POST["chief"], $tools->extract_unique($_POST["drivers"]), $tools->extract_unique($_POST["crew"]), $_POST["place"], $_POST["notes"], $_POST["type"], $tools->extract_unique([$_POST["chief"],$_POST["drivers"],$_POST["crew"]]), $user->name());
-      $tools->redirect("services.php");
+      $tools->redirect("services");
     } else {
-      $tools->redirect("accessdenied.php");
+      $tools->redirect("accessdenied");
     }
     }
     */
@@ -53,7 +53,7 @@ if($tools->validate_form("mod", "add")) {
         if($_POST["token"] == $_SESSION['token']) {
             bdump("removing user");
             $user->remove_user($_POST["id"]);
-            $tools->redirect("list.php");
+            $tools->redirect("list");
         } else {
             debug();
         }
@@ -77,9 +77,9 @@ if($tools->validate_form("mod", "add")) {
     }
     if($modalità=="edit" || $modalità=="delete") {
         if(empty($id)) {
-            $tools->redirect("accessdenied.php");
+            $tools->redirect("accessdenied");
         } elseif (!$crud->exists("profiles", $id)) {
-            $tools->redirect("accessdenied.php");
+            $tools->redirect("accessdenied");
         }
     }
         loadtemplate('edit_user.html', ['id' => $id, 'token' => $_SESSION["token"], 'modalità' => $modalità, 'values' => $values, 'title' => t(ucfirst($modalità) . " user", false)]);

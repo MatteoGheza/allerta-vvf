@@ -9,7 +9,7 @@ describe("Login and logout", () => {
 
     it('Logout', function () {
         cy.login()
-        cy.visit("/logout.php")
+        cy.visit("/logout")
         cy.contains("Login")
         cy.login()
         cy.contains("Logs")

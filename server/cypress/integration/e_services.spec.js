@@ -10,7 +10,7 @@ describe("Service management", () => {
         cy.get('tr:has(> td:has(> [data-user="7"])) > :nth-child(6)').should('contain', '0');
         cy.get('tr:has(> td:has(> [data-user="2"])) > :nth-child(6)').should('contain', '0');
         cy.get('tr:has(> td:has(> [data-user="6"])) > :nth-child(6)').should('contain', '0');
-        cy.visit("/edit_service.php?add", {
+        cy.visit("/edit_service?add", {
             onBeforeLoad(win) {
                 cy.stub(win, 'prompt').returns('test');
             }
@@ -42,10 +42,10 @@ describe("Service management", () => {
         cy.wait('@ajax_services');
         cy.contains("2020-07-12");
         cy.contains("1234/5");
-        cy.visit("/log.php");
+        cy.visit("/log");
         cy.wait('@ajax_log');
         cy.contains("Service added");
-        cy.visit("/list.php");
+        cy.visit("/list");
         cy.wait('@ajax_list');
         cy.get('tr:has(> td:has(> [data-user="11"])) > :nth-child(6)').should('contain', '1');
         cy.get('tr:has(> td:has(> [data-user="4"])) > :nth-child(6)').should('contain', '1');
@@ -56,7 +56,7 @@ describe("Service management", () => {
     });
 
     it('Edit service', function() {
-        cy.visit("/services.php");
+        cy.visit("/services");
         cy.wait('@ajax_services');
         cy.get('.dtr-details a[data-action="edit"]').first().click();
         cy.get('#progressivo').clear();
@@ -75,10 +75,10 @@ describe("Service management", () => {
         cy.wait('@ajax_services');
         cy.contains("2020-07-12");
         cy.contains("4321/5");
-        cy.visit("/log.php");
+        cy.visit("/log");
         cy.wait('@ajax_log');
         cy.contains("Service edited");
-        cy.visit("/list.php");
+        cy.visit("/list");
         cy.wait('@ajax_list');
         cy.get('tr:has(> td:has(> [data-user="11"])) > :nth-child(6)').should('contain', '0');
         cy.get('tr:has(> td:has(> [data-user="8"])) > :nth-child(6)').should('contain', '1');
@@ -89,15 +89,15 @@ describe("Service management", () => {
     });
 
     it('Delete Service', function() {
-        cy.visit("/services.php");
+        cy.visit("/services");
         cy.wait('@ajax_services');
         cy.get('.dtr-details a[data-action="delete"]').first().click();
         cy.get('#remove').click();
         cy.wait('@ajax_services');
-        cy.visit("/log.php");
+        cy.visit("/log");
         cy.wait('@ajax_log');
         cy.contains("Service removed");
-        cy.visit("/list.php");
+        cy.visit("/list");
         cy.wait('@ajax_list');
         cy.get('tr:has(> td:has(> [data-user="8"])) > :nth-child(6)').should('contain', '0');
         cy.get('tr:has(> td:has(> [data-user="3"])) > :nth-child(6)').should('contain', '0');

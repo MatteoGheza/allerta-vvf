@@ -1,12 +1,20 @@
 <?php
 function show_error_page($error=null, $error_message=null, $error_message_advanced=null){
     global $tools, $webpack_manifest_path;
+    if (!headers_sent()) {
+        http_response_code($error);
+    }
     $error = !is_null($error) ? $error : (isset($_GET["error"]) ? $_GET["error"] : 404);
     if(is_null($error_message)){
         switch ($error){
             case 404:
                 $error_message = "Page not found";
                 $error_message_advanced = "Please check the url";
+                break;
+
+            case 405:
+                $error_message = "Method not allowed";
+                $error_message_advanced = "";
                 break;
 
             case 500:

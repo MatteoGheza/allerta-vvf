@@ -32,8 +32,8 @@ foreach(!is_null($result) ? $result : [] as $row){
     s($row['place'],false,true),
     s($row['notes'],false,true),
     s($row['type'],false,true),
-    get_option("service_edit") ? "<a class='pjax_disable' data-action='edit' href='edit_service.php?edit&id={$row['id']}'><i style='font-size: 40px' class='fa fa-edit'></i></a>" : null,
-    get_option("service_remove") ? "<a class='pjax_disable' data-action='delete' href='edit_service.php?delete&id={$row['id']}'><i style='font-size: 40px' class='fa fa-trash'></i></a>" : null
+    get_option("service_edit") ? "<a class='pjax_disable' data-action='edit' href='edit_service?edit&id={$row['id']}'><i style='font-size: 40px' class='fa fa-edit'></i></a>" : null,
+    get_option("service_remove") ? "<a class='pjax_disable' data-action='delete' href='edit_service?delete&id={$row['id']}'><i style='font-size: 40px' class='fa fa-trash'></i></a>" : null
   ];
 }
 $tools->ajax_page_response($response);

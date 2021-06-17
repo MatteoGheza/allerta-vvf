@@ -9,7 +9,7 @@ if($tools->validate_form("mod", "add")) {
             bdump("adding training");
             $place = $tools->checkPlaceParam($_POST["place"]);
             $crud->add_training($_POST["date"], $_POST["name"], $_POST["start_time"], $_POST["end_time"], $_POST["chief"][0], $tools->extract_unique($_POST["crew"]), $place, $_POST["notes"], $tools->extract_unique([$_POST["chief"],$_POST["crew"]]), $user->name());
-            $tools->redirect("trainings.php");
+            $tools->redirect("trainings");
         } else {
             debug(); //TODO: remove debug info
         }
@@ -23,7 +23,7 @@ if($tools->validate_form("mod", "add")) {
             bdump("editing training");
             $place = $tools->checkPlaceParam($_POST["place"]);
             $crud->edit_training($_POST["id"], $_POST["date"], $_POST["name"], $_POST["start_time"], $_POST["end_time"], $_POST["chief"][0], $tools->extract_unique($_POST["crew"]), $place, $_POST["notes"], $tools->extract_unique([$_POST["chief"],$_POST["crew"]]), $user->name());
-            $tools->redirect("trainings.php");
+            $tools->redirect("trainings");
         } else {
             debug();
         }
@@ -36,7 +36,7 @@ if($tools->validate_form("mod", "add")) {
         if($_POST["token"] == $_SESSION['token']) {
             bdump("removing training");
             $crud->remove_training($_POST["id"]);
-            $tools->redirect("trainings.php");
+            $tools->redirect("trainings");
         } else {
             debug();
         }
@@ -62,9 +62,9 @@ if($tools->validate_form("mod", "add")) {
     }
     if($modalità=="edit" || $modalità=="delete") {
         if(empty($id)) {
-            $tools->redirect("accessdenied.php");
+            $tools->redirect("accessdenied
         } elseif (!$crud->exists("trainings", $id)) {
-            //$tools->redirect("accessdenied.php");
+            //$tools->redirect("accessdenied");
         }
     }
     loadtemplate('edit_training.html', ['training' => ['id' => $id, 'token' => $_SESSION['token'], 'modalità' => $modalità, 'crew' => $crew], 'values' => $values, 'title' => t(ucfirst($modalità) . " training", false)]);

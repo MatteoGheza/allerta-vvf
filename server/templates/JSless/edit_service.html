@@ -139,7 +139,7 @@ TODO
             new_type = prompt("{{ 'Insert type name:'|t }}");
             if(!new_type) return;
             $.ajax({
-                url: "resources/ajax/ajax_add_type.php",
+                url: "resources/ajax/ajax_add_type",
                 method: "POST",
                 data: {
                   type: new_type

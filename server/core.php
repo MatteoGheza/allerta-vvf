@@ -114,7 +114,6 @@ class tools
         if(!is_null($debugbar)) $debugbar->stackData();
         if (!headers_sent()) {
             header('Location: '.$url);
-            exit;
         } else {
             echo '<script type="text/javascript">';
             echo 'window.location.href="'.$url.'";';
@@ -123,6 +122,7 @@ class tools
             echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
             echo '</noscript>';
         }
+        exit();
     }
 
     public function rickroll()

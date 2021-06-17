@@ -10,7 +10,7 @@ if(!is_null($debugbar)){
     $debugbarRenderer = $debugbar->getJavascriptRenderer("./vendor/maximebf/debugbar/src/DebugBar/Resources");
     $debugbarRenderer->disableVendor("jquery");
     $debugbarRenderer->setEnableJqueryNoConflict(false);
-    $debugbarRenderer->setOpenHandlerUrl('debug_open.php');
+    $debugbarRenderer->setOpenHandlerUrl('debug_open');
     $debugbarRenderer->setJSNonce($nonce);
 } else {
     $enable_debugbar = false;

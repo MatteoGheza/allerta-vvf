@@ -24,7 +24,7 @@
   <script nonce="{{ nonce }}">
     $('#schedulesModal').on('show.bs.modal', function (event) {
       //$( ".modal-body" ).loading("show");
-      $(".modal-body").load("modal_availability_schedule.php?nonce={{ nonce }}", {
+      $(".modal-body").load("modal_availability_schedule?nonce={{ nonce }}", {
         orientation: window.innerHeight > window.innerWidth ? "portrait" : "landscape"
       }, function() {
         init_modal();
@@ -81,7 +81,7 @@
 
 <br><br>
 <p style="text-align: center;">
-  <a class='pjax_disable' id='add' href="edit_user.php?add">{{ 'Add user'|t }}</a>
+  <a class='pjax_disable' id='add' href="edit_user?add">{{ 'Add user'|t }}</a>
 </p>
 <br>
 <br>

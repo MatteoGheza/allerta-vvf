@@ -53,10 +53,10 @@
     <th>{{ row.notes }}</th>
     <th>{{ row.type }}</th>
     {% if option('service_edit') %}
-    <th><a href='edit_service.php?edit&id={{ row.id }}'>Modifica</a></th>
+    <th><a href='edit_service?edit&id={{ row.id }}'>Modifica</a></th>
     {% endif %}
     {% if option('service_remove') %}
-    <th><a href='edit_service.php?delete&id={{ row.id }}'>Rimuovi</a></th>
+    <th><a href='edit_service?delete&id={{ row.id }}'>Rimuovi</a></th>
     {% endif %}
   </tr>
 {% endfor %}
