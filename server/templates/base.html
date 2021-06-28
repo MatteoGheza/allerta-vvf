@@ -61,8 +61,14 @@
     <a href="{{ urlsoftware }}services.php">{{ 'Services'|t }}</a>
     <a href="{{ urlsoftware }}trainings.php">{{ 'Trainings'|t }}</a>
     <a href="{{ urlsoftware }}log.php">{{ 'Logs'|t }}</a>
-    <a style="float: right;" id="logout">{{ 'Hi, %s.'|t|format(user.name) }} <b
-        id="logout-text">{{ 'Logout'|t }}</b></a>
+    <div id="navbar_right">
+      <div style="float: right;" id="navbar_settings">
+        <a href=""><i class="fa fa-cog"></i> {{ 'Settings'|t }}</a>
+      </div>
+      <div style="float: right;" id="navbar_logout">
+        <a class="pjax_disable" href="#">{{ 'Hi, %s.'|t|format(user.name) }} <b id="logout-text">{{ 'Logout'|t }}</b></a>
+      </div>
+    </div>
     <a class="pjax_disable icon" id="menuButton">☰</a>
   </div>
   {# /Menu #}

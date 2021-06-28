@@ -188,8 +188,23 @@ $(function() {
     const topNavBar = document.getElementById("topNavBar");
     if (topNavBar.className === "topnav") {
       topNavBar.className += " responsive";
+      document.getElementById("navbar_right").style.display = "flex";
+      document.getElementById("navbar_right").style.justifyContent = "flex-end";
     } else {
       topNavBar.className = "topnav";
+      document.getElementById("navbar_right").style.display = "none";
+      document.getElementById("navbar_right").style.justifyContent = null;
+    }
+  });
+  window.addEventListener('resize', () => {
+    console.log(window.innerWidth);
+    if(window.innerWidth > 650) {
+      document.getElementById("navbar_right").style.display = "flex";
+      document.getElementById("navbar_right").style.justifyContent = "flex-end";
+    } else {
+      document.getElementById("navbar_right").style.display = null;
+      document.getElementById("navbar_right").style.justifyContent = null;
+      document.getElementById("topNavBar").className = "topnav";
     }
   });
   $("#logout-text").on("click", function(){ location.href='logout.php'; });

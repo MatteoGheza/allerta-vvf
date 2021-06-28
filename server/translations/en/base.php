@@ -132,5 +132,6 @@ return [
     "User not exists." => "User not exists.",
     "Change" => "Change",
     "Delete the offline version of Allerta-VVF from this device." => "Delete the offline version of Allerta-VVF from this device.",
-    "You have cleared the cache; the table will be loaded when the device is connected to the Internet." => "You have cleared the cache; the table will be loaded when the device is connected to the Internet."
+    "You have cleared the cache; the table will be loaded when the device is connected to the Internet." => "You have cleared the cache; the table will be loaded when the device is connected to the Internet.",
+    "Settings" => "Settings"
 ];
